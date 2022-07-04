@@ -1,0 +1,434 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D7210E028724ED00037D492 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7210DF28724ED00037D492 /* AppDelegate.swift */; };
+		1D7210E228724ED00037D492 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7210E128724ED00037D492 /* SceneDelegate.swift */; };
+		1D7210E428724ED00037D492 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7210E328724ED00037D492 /* ViewController.swift */; };
+		1D7210E728724ED00037D492 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D7210E528724ED00037D492 /* Main.storyboard */; };
+		1D7210E928724ED10037D492 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D7210E828724ED10037D492 /* Assets.xcassets */; };
+		1D7210EC28724ED10037D492 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D7210EA28724ED10037D492 /* LaunchScreen.storyboard */; };
+		2BCE2CF893F7891A35046263 /* Pods_CJ_NaverAPI_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1297449F01F81DD12C3DB1CB /* Pods_CJ_NaverAPI_Example.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		01F64C6A636C5F09F1D9CF75 /* Pods-CJ-NaverAPI-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CJ-NaverAPI-Example.release.xcconfig"; path = "Target Support Files/Pods-CJ-NaverAPI-Example/Pods-CJ-NaverAPI-Example.release.xcconfig"; sourceTree = "<group>"; };
+		1297449F01F81DD12C3DB1CB /* Pods_CJ_NaverAPI_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CJ_NaverAPI_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D7210DC28724ED00037D492 /* CJ-NaverAPI-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CJ-NaverAPI-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D7210DF28724ED00037D492 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1D7210E128724ED00037D492 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		1D7210E328724ED00037D492 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1D7210E628724ED00037D492 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1D7210E828724ED10037D492 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1D7210EB28724ED10037D492 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1D7210ED28724ED10037D492 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		61F01D124C24B5F6227B1AC9 /* Pods-CJ-NaverAPI-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CJ-NaverAPI-Example.debug.xcconfig"; path = "Target Support Files/Pods-CJ-NaverAPI-Example/Pods-CJ-NaverAPI-Example.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D7210D928724ED00037D492 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BCE2CF893F7891A35046263 /* Pods_CJ_NaverAPI_Example.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1D7210D328724ED00037D492 = {
+			isa = PBXGroup;
+			children = (
+				1D7210DE28724ED00037D492 /* CJ-NaverAPI-Example */,
+				1D7210DD28724ED00037D492 /* Products */,
+				CBFAE36378AEDFDA19B20E44 /* Pods */,
+				2EBE44A25417B12473332F9F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1D7210DD28724ED00037D492 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D7210DC28724ED00037D492 /* CJ-NaverAPI-Example.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1D7210DE28724ED00037D492 /* CJ-NaverAPI-Example */ = {
+			isa = PBXGroup;
+			children = (
+				1D7210DF28724ED00037D492 /* AppDelegate.swift */,
+				1D7210E128724ED00037D492 /* SceneDelegate.swift */,
+				1D7210E328724ED00037D492 /* ViewController.swift */,
+				1D7210E528724ED00037D492 /* Main.storyboard */,
+				1D7210E828724ED10037D492 /* Assets.xcassets */,
+				1D7210EA28724ED10037D492 /* LaunchScreen.storyboard */,
+				1D7210ED28724ED10037D492 /* Info.plist */,
+			);
+			path = "CJ-NaverAPI-Example";
+			sourceTree = "<group>";
+		};
+		2EBE44A25417B12473332F9F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1297449F01F81DD12C3DB1CB /* Pods_CJ_NaverAPI_Example.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CBFAE36378AEDFDA19B20E44 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				61F01D124C24B5F6227B1AC9 /* Pods-CJ-NaverAPI-Example.debug.xcconfig */,
+				01F64C6A636C5F09F1D9CF75 /* Pods-CJ-NaverAPI-Example.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D7210DB28724ED00037D492 /* CJ-NaverAPI-Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D7210F028724ED10037D492 /* Build configuration list for PBXNativeTarget "CJ-NaverAPI-Example" */;
+			buildPhases = (
+				6C7FE50A5C9BF20B6BFD86F8 /* [CP] Check Pods Manifest.lock */,
+				1D7210D828724ED00037D492 /* Sources */,
+				1D7210D928724ED00037D492 /* Frameworks */,
+				1D7210DA28724ED00037D492 /* Resources */,
+				4C643BD3BD82D27031F153CE /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CJ-NaverAPI-Example";
+			productName = "CJ-NaverAPI-Example";
+			productReference = 1D7210DC28724ED00037D492 /* CJ-NaverAPI-Example.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1D7210D428724ED00037D492 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					1D7210DB28724ED00037D492 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 1D7210D728724ED00037D492 /* Build configuration list for PBXProject "CJ-NaverAPI-Example" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1D7210D328724ED00037D492;
+			productRefGroup = 1D7210DD28724ED00037D492 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D7210DB28724ED00037D492 /* CJ-NaverAPI-Example */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D7210DA28724ED00037D492 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D7210EC28724ED10037D492 /* LaunchScreen.storyboard in Resources */,
+				1D7210E928724ED10037D492 /* Assets.xcassets in Resources */,
+				1D7210E728724ED00037D492 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4C643BD3BD82D27031F153CE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CJ-NaverAPI-Example/Pods-CJ-NaverAPI-Example-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CJ-NaverAPI-Example/Pods-CJ-NaverAPI-Example-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CJ-NaverAPI-Example/Pods-CJ-NaverAPI-Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6C7FE50A5C9BF20B6BFD86F8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CJ-NaverAPI-Example-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D7210D828724ED00037D492 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D7210E428724ED00037D492 /* ViewController.swift in Sources */,
+				1D7210E028724ED00037D492 /* AppDelegate.swift in Sources */,
+				1D7210E228724ED00037D492 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1D7210E528724ED00037D492 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1D7210E628724ED00037D492 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1D7210EA28724ED10037D492 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1D7210EB28724ED10037D492 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1D7210EE28724ED10037D492 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1D7210EF28724ED10037D492 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1D7210F128724ED10037D492 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61F01D124C24B5F6227B1AC9 /* Pods-CJ-NaverAPI-Example.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H8B2PN25Z8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "CJ-NaverAPI-Example/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "wonjune.CJ-NaverAPI-Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1D7210F228724ED10037D492 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01F64C6A636C5F09F1D9CF75 /* Pods-CJ-NaverAPI-Example.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H8B2PN25Z8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "CJ-NaverAPI-Example/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "wonjune.CJ-NaverAPI-Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D7210D728724ED00037D492 /* Build configuration list for PBXProject "CJ-NaverAPI-Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D7210EE28724ED10037D492 /* Debug */,
+				1D7210EF28724ED10037D492 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1D7210F028724ED10037D492 /* Build configuration list for PBXNativeTarget "CJ-NaverAPI-Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D7210F128724ED10037D492 /* Debug */,
+				1D7210F228724ED10037D492 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1D7210D428724ED00037D492 /* Project object */;
+}

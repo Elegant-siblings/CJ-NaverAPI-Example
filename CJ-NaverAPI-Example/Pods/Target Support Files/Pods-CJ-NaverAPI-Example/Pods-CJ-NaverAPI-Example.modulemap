@@ -1,0 +1,6 @@
+framework module Pods_CJ_NaverAPI_Example {
+  umbrella header "Pods-CJ-NaverAPI-Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
