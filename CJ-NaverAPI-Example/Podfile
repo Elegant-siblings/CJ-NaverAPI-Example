@@ -8,5 +8,8 @@ target 'CJ-NaverAPI-Example' do
   # Pods for CJ-NaverAPI-Example
   pod 'SnapKit'
   pod 'NMapsMap'
+  pod 'Then'
+  pod 'Alamofire'
 
 end
+

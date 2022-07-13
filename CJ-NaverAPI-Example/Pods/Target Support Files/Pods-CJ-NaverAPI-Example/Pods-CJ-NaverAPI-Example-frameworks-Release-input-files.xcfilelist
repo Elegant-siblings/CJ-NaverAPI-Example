@@ -1,3 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-CJ-NaverAPI-Example/Pods-CJ-NaverAPI-Example-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
+${BUILT_PRODUCTS_DIR}/Then/Then.framework
 ${PODS_XCFRAMEWORKS_BUILD_DIR}/NMapsMap/NMapsMap.framework/NMapsMap

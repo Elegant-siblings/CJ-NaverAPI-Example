@@ -12,10 +12,15 @@
 		1D7210E428724ED00037D492 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7210E328724ED00037D492 /* ViewController.swift */; };
 		1D7210E928724ED10037D492 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D7210E828724ED10037D492 /* Assets.xcassets */; };
 		1D7210EC28724ED10037D492 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D7210EA28724ED10037D492 /* LaunchScreen.storyboard */; };
+		32397B732878422B002F2BC7 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32397B722878422B002F2BC7 /* TableViewCell.swift */; };
 		328885952875B87500F33266 /* NMapsMap.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328885912875B86200F33266 /* NMapsMap.xcframework */; };
 		328885982875B87700F33266 /* Pods_CJ_NaverAPI_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1297449F01F81DD12C3DB1CB /* Pods_CJ_NaverAPI_Example.framework */; };
 		328CA3FC287711580021A616 /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CA3FB287711580021A616 /* mapViewController.swift */; };
 		328CA3FF287714DC0021A616 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CA3FE287714DC0021A616 /* UIViewController.swift */; };
+		32C9279F287DA16200C781FC /* MapDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C9279E287DA16200C781FC /* MapDataManager.swift */; };
+		32C927A1287DA4A400C781FC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C927A0287DA4A400C781FC /* Constant.swift */; };
+		32C927A4287DA6E400C781FC /* MapResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C927A3287DA6E400C781FC /* MapResponse.swift */; };
+		32C927A6287DAE8D00C781FC /* MapProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C927A5287DAE8D00C781FC /* MapProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,9 +33,14 @@
 		1D7210E828724ED10037D492 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D7210EB28724ED10037D492 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D7210ED28724ED10037D492 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32397B722878422B002F2BC7 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		328885912875B86200F33266 /* NMapsMap.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NMapsMap.xcframework; path = Pods/NMapsMap/framework/NMapsMap.xcframework; sourceTree = "<group>"; };
 		328CA3FB287711580021A616 /* mapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapViewController.swift; sourceTree = "<group>"; };
 		328CA3FE287714DC0021A616 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		32C9279E287DA16200C781FC /* MapDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDataManager.swift; sourceTree = "<group>"; };
+		32C927A0287DA4A400C781FC /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		32C927A3287DA6E400C781FC /* MapResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapResponse.swift; sourceTree = "<group>"; };
+		32C927A5287DAE8D00C781FC /* MapProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapProtocol.swift; sourceTree = "<group>"; };
 		61F01D124C24B5F6227B1AC9 /* Pods-CJ-NaverAPI-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CJ-NaverAPI-Example.debug.xcconfig"; path = "Target Support Files/Pods-CJ-NaverAPI-Example/Pods-CJ-NaverAPI-Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,14 +78,16 @@
 		1D7210DE28724ED00037D492 /* CJ-NaverAPI-Example */ = {
 			isa = PBXGroup;
 			children = (
+				32C927A0287DA4A400C781FC /* Constant.swift */,
+				32C927A2287DA6B700C781FC /* FindPath */,
 				328CA3FD287714CB0021A616 /* extension */,
 				1D7210DF28724ED00037D492 /* AppDelegate.swift */,
 				1D7210E128724ED00037D492 /* SceneDelegate.swift */,
-				1D7210E328724ED00037D492 /* ViewController.swift */,
 				1D7210E828724ED10037D492 /* Assets.xcassets */,
 				1D7210EA28724ED10037D492 /* LaunchScreen.storyboard */,
 				1D7210ED28724ED10037D492 /* Info.plist */,
 				328CA3FB287711580021A616 /* mapViewController.swift */,
+				32397B722878422B002F2BC7 /* TableViewCell.swift */,
 			);
 			path = "CJ-NaverAPI-Example";
 			sourceTree = "<group>";
@@ -95,6 +107,17 @@
 				328CA3FE287714DC0021A616 /* UIViewController.swift */,
 			);
 			path = extension;
+			sourceTree = "<group>";
+		};
+		32C927A2287DA6B700C781FC /* FindPath */ = {
+			isa = PBXGroup;
+			children = (
+				1D7210E328724ED00037D492 /* ViewController.swift */,
+				32C9279E287DA16200C781FC /* MapDataManager.swift */,
+				32C927A3287DA6E400C781FC /* MapResponse.swift */,
+				32C927A5287DAE8D00C781FC /* MapProtocol.swift */,
+			);
+			path = FindPath;
 			sourceTree = "<group>";
 		};
 		CBFAE36378AEDFDA19B20E44 /* Pods */ = {
@@ -220,10 +243,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32C927A6287DAE8D00C781FC /* MapProtocol.swift in Sources */,
 				1D7210E428724ED00037D492 /* ViewController.swift in Sources */,
 				1D7210E028724ED00037D492 /* AppDelegate.swift in Sources */,
 				1D7210E228724ED00037D492 /* SceneDelegate.swift in Sources */,
+				32C927A1287DA4A400C781FC /* Constant.swift in Sources */,
+				32397B732878422B002F2BC7 /* TableViewCell.swift in Sources */,
 				328CA3FC287711580021A616 /* mapViewController.swift in Sources */,
+				32C927A4287DA6E400C781FC /* MapResponse.swift in Sources */,
+				32C9279F287DA16200C781FC /* MapDataManager.swift in Sources */,
 				328CA3FF287714DC0021A616 /* UIViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,7 +397,6 @@
 				INFOPLIST_FILE = "CJ-NaverAPI-Example/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -398,7 +425,6 @@
 				INFOPLIST_FILE = "CJ-NaverAPI-Example/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
