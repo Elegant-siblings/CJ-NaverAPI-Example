@@ -10,7 +10,10 @@ import CoreLocation
 import NMapsMap
 import SnapKit
 
-class ViewController: UIViewController, NMFMapViewCameraDelegate {
+
+public let DEFAULT_CAMERA_POSITION = NMFCameraPosition(NMGLatLng(lat: 37.5666102, lng: 126.9783881), zoom: 14, tilt: 0, heading: 0)
+
+class ViewController: UIViewController {
     
 //    let rectView = UIView().then{
 //        $0.backgroundColor = .white
@@ -35,6 +38,10 @@ class ViewController: UIViewController, NMFMapViewCameraDelegate {
     
     var longitude: CLLocationDegrees!
     var latitude: CLLocationDegrees!
+//
+//    var mapView: NMFMapView {
+//        return naverMapView.mapView
+//    }
     
     
     var progressPathOverlay: NMFPath?
@@ -60,6 +67,7 @@ class ViewController: UIViewController, NMFMapViewCameraDelegate {
     let mapView = NMFMapView().then{
 //        $0.addCameraDelegate(delegate: self)
         $0.allowsZooming = true
+//        $0.frame = view.frame
     }
 
     override func viewDidLoad() {
@@ -67,12 +75,14 @@ class ViewController: UIViewController, NMFMapViewCameraDelegate {
         // Do any additional setup after loading the view.
         self.view.backgroundColor = .white
         
+        
         view.addSubview(mapView)
         view.addSubview(pathButton)
         view.addSubview(distanceLabel)
         view.addSubview(timeLabel)
 //        rectView.addSubview(mapView)
-        mapView.touchDelegate = self
+//        mapView.touchDelegate = self
+//        mapView.delegate = self
         mapView.isUserInteractionEnabled = true
         pathButton.addTarget(self, action: #selector(findPath), for: .touchUpInside)
         setConstraints()
@@ -80,12 +90,14 @@ class ViewController: UIViewController, NMFMapViewCameraDelegate {
         // 서비스 권한 허용 메세지 띄우기
 //        locationManager.requestWhenInUseAuthorization()
         
-        let param = NMFCameraUpdateParams()
+//        let param = NMFCameraUpdateParams()
 //        param.scroll(to: default_.target)
 //        param.zoom(to: DEFAULT_CAMERA_POSITION.zoom)
 //        mapView.moveCamera(NMFCameraUpdate(position: ))
 //        cameraUpdate(lat: 37.5666102, lng: 126.9783881)
 //        setMarker(lat: 37.5666102, lng: 126.9783881)
+        
+        mapView.moveCamera(NMFCameraUpdate(position: DEFAULT_CAMERA_POSITION))
         
     }
     
@@ -133,16 +145,12 @@ class ViewController: UIViewController, NMFMapViewCameraDelegate {
         }
     }
     
-    
-    func cameraUpdate(lat: Double, lng: Double ) {
-        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(
-            lat: lat,
-            lng: lng
-        ))
-
-        cameraUpdate.animation = .easeIn
-        mapView.moveCamera(cameraUpdate)
-    }
+//    func cameraUpdate(lat: Double, lng: Double ) {
+//        let update = NMFCameraUpdate(scrollTo: NMGLatLng(lat: lat, lng: lng))
+//
+////        cameraUpdate.animation = .easeIn
+//        mapView.moveCamera(update)
+//    }
     
     
     func setMarker(lat: Double, lng: Double) {
@@ -215,28 +223,28 @@ extension NMGLatLng {
 //}
 
 // 클릭 시 이벤트
-extension ViewController: NMFMapViewTouchDelegate {
-    func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
-        print(latlng.lat, latlng.lng)
-        
-        cameraUpdate(lat: latlng.lat, lng: latlng.lng)
-        setMarker(lat: latlng.lat, lng: latlng.lng)
-        
-        
-//       let alertController = UIAlertController(title: "지도 클릭", message: latlng.positionString(), preferredStyle: .alert)
-//       present(alertController, animated: true) {
-//           DispatchQueue.main.asyncAfter(deadline: (DispatchTime.now() + 0.5), execute: {
-//               alertController.dismiss(animated: true, completion: nil)
-//           })
-//       }
-        
-        
-        if let pathOverlay = progressPathOverlay {
-            let progress = NMFGeometryUtils.progress(with: pathOverlay.path.points as! [NMGLatLng], targetLatLng: latlng)
-            pathOverlay.progress = Double(progress)
-        }
-   }
-}
+//extension ViewController: NMFMapViewTouchDelegate {
+//    func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
+//        print(latlng.lat, latlng.lng)
+//
+//        cameraUpdate(lat: latlng.lat, lng: latlng.lng)
+//        setMarker(lat: latlng.lat, lng: latlng.lng)
+//
+//
+////       let alertController = UIAlertController(title: "지도 클릭", message: latlng.positionString(), preferredStyle: .alert)
+////       present(alertController, animated: true) {
+////           DispatchQueue.main.asyncAfter(deadline: (DispatchTime.now() + 0.5), execute: {
+////               alertController.dismiss(animated: true, completion: nil)
+////           })
+////       }
+//
+//
+//        if let pathOverlay = progressPathOverlay {
+//            let progress = NMFGeometryUtils.progress(with: pathOverlay.path.points as! [NMGLatLng], targetLatLng: latlng)
+//            pathOverlay.progress = Double(progress)
+//        }
+//   }
+//}
 
 
 extension ViewController: ViewControllerDelegate{
