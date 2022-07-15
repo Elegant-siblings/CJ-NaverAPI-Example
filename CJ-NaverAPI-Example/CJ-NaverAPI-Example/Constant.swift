@@ -11,7 +11,7 @@ import Alamofire
 class Constant {
     static let shared: Constant = Constant()
     
-    let FIND_PATH_BASE_URL = "https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving?"
+    let FIND_PATH_BASE_URL = "https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving"
     
     var HEADERS: HTTPHeaders {
         return ["X-NCP-APIGW-API-KEY-ID" : "ze98l8nczg",

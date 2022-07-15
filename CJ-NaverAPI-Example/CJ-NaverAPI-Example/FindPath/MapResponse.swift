@@ -10,8 +10,9 @@ import Foundation
 // MARK: - Welcome
 struct MapResponse: Decodable {
     let code: Int
-    let message, currentDateTime: String
-    let route: Route
+    let message: String
+    let currentDateTime: String?
+    let route: Route?
 }
 
 // MARK: - Route

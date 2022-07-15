@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MapDataManagerDelegate{
-    func shortestPath(dep_lng: String, dep_lat: String, dest_lng: String, dest_lat: String, option: String)
+    func shortestPath(dep_lng: Double, dep_lat: Double, dest_lng: Double, dest_lat: Double, option: String)
 }
 
 protocol ViewControllerDelegate: AnyObject{

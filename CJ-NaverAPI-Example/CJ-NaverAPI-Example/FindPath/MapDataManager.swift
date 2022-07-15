@@ -16,7 +16,7 @@ class MapDataManager: MapDataManagerDelegate {
         self.delegate = delegate
     }
     
-    func shortestPath(dep_lng: String, dep_lat: String, dest_lng: String, dest_lat: String, option: String) {
+    func shortestPath(dep_lng: Double, dep_lat: Double, dest_lng: Double, dest_lat: Double, option: String) {
         let url : String = "\(Constant.shared.FIND_PATH_BASE_URL)?start=\(dep_lng),\(dep_lat)&goal=\(dest_lng),\(dest_lat)&option=\(option)"
         
         AF.request(url,
@@ -24,14 +24,15 @@ class MapDataManager: MapDataManagerDelegate {
                    headers: Constant.shared.HEADERS).validate().responseDecodable(of: MapResponse.self) { (response) in
             switch response.result {
             case .success(let response):
+                print(response.code)
                 if response.code == 0 {
-                    let result = response.route.trafast[0]
+                    let result = response.route!.trafast[0]
                     self.delegate?.didSuccessReturnPath(result: result)
                 } else {
                     self.delegate?.failedToRequest(message: response.message)
                 }
             case .failure(let error):
-                print(error.localizedDescription)
+                print(error)
                 self.delegate?.failedToRequest(message: "서버")
             }
         }

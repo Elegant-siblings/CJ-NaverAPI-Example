@@ -11,18 +11,21 @@ import NMapsMap
 import SnapKit
 
 
-public let DEFAULT_CAMERA_POSITION = NMFCameraPosition(NMGLatLng(lat: 37.5666102, lng: 126.9783881), zoom: 14, tilt: 0, heading: 0)
+//public let DEFAULT_CAMERA_POSITION = NMFCameraPosition(NMGLatLng(lat: 37.5666102, lng: 126.9783881), zoom: 14, tilt: 0, heading: 0)
 
 class ViewController: UIViewController {
     
-//    let rectView = UIView().then{
-//        $0.backgroundColor = .white
-//    }
-//
+    
+    let bounds1 = NMGLatLngBounds(southWest: NMGLatLng(lat: 37.4282975, lng: 126.7644840),
+                                  northEast: NMGLatLng(lat: 37.7014553, lng: 127.1837949))
+    let bounds2 = NMGLatLngBounds(southWest: NMGLatLng(lat: 34.8357234, lng: 128.7614072),
+                                  northEast: NMGLatLng(lat: 35.3890374, lng: 129.3055979))
+    var boundsFlag = false
+    
+    
     
     let pathButton = UIButton().then {
         $0.backgroundColor = .green
-        
         $0.setTitle("경로 찾기", for: .normal)
     }
     
@@ -38,11 +41,7 @@ class ViewController: UIViewController {
     
     var longitude: CLLocationDegrees!
     var latitude: CLLocationDegrees!
-//
-//    var mapView: NMFMapView {
-//        return naverMapView.mapView
-//    }
-    
+
     
     var progressPathOverlay: NMFPath?
     
@@ -50,24 +49,9 @@ class ViewController: UIViewController {
     lazy var dataManager = MapDataManager(delegate: self)
 
     
-//    lazy var locationManager: CLLocationManager = {
-//        let manager = CLLocationManager()
-//        manager.desiredAccuracy = kCLLocationAccuracyBest
-//        manager.delegate = self
-//        return manager
-//    }()
 
-//    lazy var mapView: NMFMapView = {
-//        let map = NMFMapView(frame: view.frame)
-//        map.addCameraDelegate(delegate: self)
-//        map.allowsZooming = true
-//        return map
-//    }()
-    
     let mapView = NMFMapView().then{
-//        $0.addCameraDelegate(delegate: self)
         $0.allowsZooming = true
-//        $0.frame = view.frame
     }
 
     override func viewDidLoad() {
@@ -80,45 +64,28 @@ class ViewController: UIViewController {
         view.addSubview(pathButton)
         view.addSubview(distanceLabel)
         view.addSubview(timeLabel)
-//        rectView.addSubview(mapView)
-//        mapView.touchDelegate = self
-//        mapView.delegate = self
-        mapView.isUserInteractionEnabled = true
+
         pathButton.addTarget(self, action: #selector(findPath), for: .touchUpInside)
         setConstraints()
         
-        // 서비스 권한 허용 메세지 띄우기
-//        locationManager.requestWhenInUseAuthorization()
         
-//        let param = NMFCameraUpdateParams()
-//        param.scroll(to: default_.target)
-//        param.zoom(to: DEFAULT_CAMERA_POSITION.zoom)
-//        mapView.moveCamera(NMFCameraUpdate(position: ))
-//        cameraUpdate(lat: 37.5666102, lng: 126.9783881)
-//        setMarker(lat: 37.5666102, lng: 126.9783881)
+        let ne1 = NMFMarker(position: bounds1.northEast)
+        ne1.mapView = mapView
+        let sw1 = NMFMarker(position: bounds1.southWest)
+        sw1.mapView = mapView
+        let ne2 = NMFMarker(position: bounds2.northEast)
+        ne2.mapView = mapView
+        let sw2 = NMFMarker(position: bounds2.southWest)
+        sw2.mapView = mapView
         
-        mapView.moveCamera(NMFCameraUpdate(position: DEFAULT_CAMERA_POSITION))
+//        mapView.moveCamera(NMFCameraUpdate(position: DEFAULT_CAMERA_POSITION))
         
     }
     
     
     
-//    func mapView(_ mapView: NMFMapView, cameraIsChangingByReason reason: Int) {
-//        print("카메라가 변경됨 : reason : \(reason)")
-//        let cameraPosition = mapView.cameraPosition
-//
-//        print(cameraPosition.target.lat, cameraPosition.target.lng)
-//
-//    }
-    
     func setConstraints() {
-//        rectView.snp.makeConstraints { make in
-////            make.edges.equalToSuperview()
-//            make.width.equalTo(self.view)
-//            make.height.equalTo(500)
-//            make.top.equalTo(self.view)
-//        }
-//
+
         mapView.snp.makeConstraints { make in
             make.width.equalTo(self.view)
             make.height.equalTo(500)
@@ -131,7 +98,6 @@ class ViewController: UIViewController {
             make.height.equalTo(30)
             make.centerX.equalTo(self.view)
             make.top.equalTo(mapView.snp.bottom).offset(30)
-//            make.top.equalToSuperview().offset(50)
         }
         
         timeLabel.snp.makeConstraints { make in
@@ -144,13 +110,7 @@ class ViewController: UIViewController {
             make.top.equalTo(timeLabel.snp.bottom).offset(20)
         }
     }
-    
-//    func cameraUpdate(lat: Double, lng: Double ) {
-//        let update = NMFCameraUpdate(scrollTo: NMGLatLng(lat: lat, lng: lng))
-//
-////        cameraUpdate.animation = .easeIn
-//        mapView.moveCamera(update)
-//    }
+
     
     
     func setMarker(lat: Double, lng: Double) {
@@ -178,7 +138,7 @@ class ViewController: UIViewController {
     
     @objc func findPath() {
         print("touched")
-        dataManager.shortestPath(dep_lng: "126.9783881", dep_lat: "37.5666102", dest_lng: "129.075986", dest_lat: "35.17947", option: "trafast")
+        dataManager.shortestPath(dep_lng: 126.7644840, dep_lat: 37.4282975, dest_lng: 128.7614072, dest_lat: 34.8357234, option: "trafast")
     }
 }
 
@@ -189,62 +149,6 @@ extension NMGLatLng {
     }
 }
 
-// 내 위치 받아오기
-//extension ViewController: CLLocationManagerDelegate{
-//
-//    func getLocationUsagePermission() {
-//        self.locationManager.requestWhenInUseAuthorization()
-//    }
-//
-//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-//        switch status {
-//        case .authorizedAlways, .authorizedWhenInUse:
-//            print("GPS 권한 설정됨")
-//            self.locationManager.startUpdatingLocation() // 중요!
-//
-//            let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(
-//                lat: locationManager.location?.coordinate.latitude ?? 0,
-//                lng: locationManager.location?.coordinate.longitude ?? 0
-//            ))
-//
-//            cameraUpdate.animation = .easeIn
-//            mapView.moveCamera(cameraUpdate)
-//
-//        case .restricted, .notDetermined:
-//            print("GPS 권한 설정되지 않음")
-//            getLocationUsagePermission()
-//        case .denied:
-//            print("GPS 권한 요청 거부됨")
-//            getLocationUsagePermission()
-//        default:
-//            print("GPS: Default")
-//        }
-//    }
-//}
-
-// 클릭 시 이벤트
-//extension ViewController: NMFMapViewTouchDelegate {
-//    func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
-//        print(latlng.lat, latlng.lng)
-//
-//        cameraUpdate(lat: latlng.lat, lng: latlng.lng)
-//        setMarker(lat: latlng.lat, lng: latlng.lng)
-//
-//
-////       let alertController = UIAlertController(title: "지도 클릭", message: latlng.positionString(), preferredStyle: .alert)
-////       present(alertController, animated: true) {
-////           DispatchQueue.main.asyncAfter(deadline: (DispatchTime.now() + 0.5), execute: {
-////               alertController.dismiss(animated: true, completion: nil)
-////           })
-////       }
-//
-//
-//        if let pathOverlay = progressPathOverlay {
-//            let progress = NMFGeometryUtils.progress(with: pathOverlay.path.points as! [NMGLatLng], targetLatLng: latlng)
-//            pathOverlay.progress = Double(progress)
-//        }
-//   }
-//}
 
 
 extension ViewController: ViewControllerDelegate{
@@ -261,6 +165,11 @@ extension ViewController: ViewControllerDelegate{
         let mins = ((milliseconds / (1000*60)) % 60)
         timeLabel.text = "이동시간: \(hours)시간 \(mins)분"
         
+        let camUpdate = NMFCameraUpdate(fit: boundsFlag ? bounds2 : bounds1, padding: 24)
+        camUpdate.animation = .fly
+        camUpdate.animationDuration = 5
+        mapView.moveCamera(camUpdate)
+        boundsFlag = !boundsFlag
     }
     func failedToRequest(message: String){
         print(message)
