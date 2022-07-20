@@ -9,19 +9,12 @@ import UIKit
 import CoreLocation
 import NMapsMap
 import SnapKit
+import Then
 
 
 //public let DEFAULT_CAMERA_POSITION = NMFCameraPosition(NMGLatLng(lat: 37.5666102, lng: 126.9783881), zoom: 14, tilt: 0, heading: 0)
 
 class ViewController: UIViewController {
-    
-    
-    let bounds1 = NMGLatLngBounds(southWest: NMGLatLng(lat: 37.4282975, lng: 126.7644840),
-                                  northEast: NMGLatLng(lat: 37.7014553, lng: 127.1837949))
-    let bounds2 = NMGLatLngBounds(southWest: NMGLatLng(lat: 34.8357234, lng: 128.7614072),
-                                  northEast: NMGLatLng(lat: 35.3890374, lng: 129.3055979))
-    var boundsFlag = false
-    
     
     
     let pathButton = UIButton().then {
@@ -42,14 +35,27 @@ class ViewController: UIViewController {
     var longitude: CLLocationDegrees!
     var latitude: CLLocationDegrees!
 
+    //출발 & 도착 위치 정보: southWest -> 출발, nortEast -> 도착
+//    let departLocation = NMGLatLng(lat: 37.7014553, lng: 126.7644840)
+//    let destLocation = NMGLatLng(lat: 37.4282975, lng: 127.1837949)
+    let bounds1 = NMGLatLngBounds(southWest: NMGLatLng(lat: 37.4282975, lng: 126.7644840),
+                                  northEast: NMGLatLng(lat: 37.7014553, lng: 127.1837949))
     
-    var progressPathOverlay: NMFPath?
+    let way1 = NMGLatLng(lat: 37.55484, lng: 127.15238)
+    let way2 = NMGLatLng(lat: 37.62344, lng: 127.20376)
+        // 경유지 위치 정보
+//    let wayPoints : [[Double]]?
+//    var wayPointsToString : String? = ""
     
+    //경로
+    var progressMultipartPath: NMFMultipartPath?
+    var coords = [NMGLatLng]()
+    var stringCoords = [NMGLineString<NMGLatLng>]()
+    var wayPointIdx : [Int] = []
     
     lazy var dataManager = MapDataManager(delegate: self)
 
     
-
     let mapView = NMFMapView().then{
         $0.allowsZooming = true
     }
@@ -68,20 +74,32 @@ class ViewController: UIViewController {
         pathButton.addTarget(self, action: #selector(findPath), for: .touchUpInside)
         setConstraints()
         
+        // 출발 & 도착 위치 마커 찍기
+        let departMark = NMFMarker(position: bounds1.southWest)
+        departMark.mapView = mapView
+        let destMark = NMFMarker(position: bounds1.northEast)
+        destMark.mapView = mapView
+        let way1Mark = NMFMarker(position: NMGLatLng(lat: way1.lat, lng: way1.lng))
+        way1Mark.mapView = mapView
+        let way2Mark = NMFMarker(position: NMGLatLng(lat: way2.lat, lng: way2.lng))
+        way2Mark.mapView = mapView
         
-        let ne1 = NMFMarker(position: bounds1.northEast)
-        ne1.mapView = mapView
-        let sw1 = NMFMarker(position: bounds1.southWest)
-        sw1.mapView = mapView
-        let ne2 = NMFMarker(position: bounds2.northEast)
-        ne2.mapView = mapView
-        let sw2 = NMFMarker(position: bounds2.southWest)
-        sw2.mapView = mapView
-        
-//        mapView.moveCamera(NMFCameraUpdate(position: DEFAULT_CAMERA_POSITION))
-        
+//        if let way = wayPoints {
+//            for i in way {
+//                wayPointsToString! += i.map({"\($0)"}).joined(separator: ",")
+//            }
+//            wayPointsToString! += "|"
+//        } else {
+//            wayPointsToString = nil
+//        }
     }
     
+//    init(dep_lng: Double, dep_lat: Double, dest_lng: Double, dest_lat: Double) {
+//        self.bounds1.southWestLng = dep_lng
+//        self.bounds1.southWestLat = dep_lat
+//        self.bounds1.northEastLng = dest_lng
+//        self.bounds1.northEastLat= dest_lat
+//    }
     
     
     func setConstraints() {
@@ -113,49 +131,79 @@ class ViewController: UIViewController {
 
     
     
-    func setMarker(lat: Double, lng: Double) {
-        let marker = NMFMarker(position: NMGLatLng(lat: lat, lng: lng))
-        marker.iconImage = NMF_MARKER_IMAGE_GREEN
-        marker.mapView = mapView
-    }
+//    func setMarker(lat: Double, lng: Double) {
+//        let marker = NMFMarker(position: NMGLatLng(lat: lat, lng: lng))
+//        marker.iconImage = NMF_MARKER_IMAGE_GREEN
+//        marker.mapView = mapView
+//    }
     
     func initPath() {
         let width: CGFloat = 8
         let outlineWidth: CGFloat = 2
         
-        if let pathOverlay = NMFPath(points: CoordsData.coords1) {
-            pathOverlay.width = width
-            pathOverlay.outlineWidth = outlineWidth
-            pathOverlay.color = .green
-            pathOverlay.outlineColor = UIColor.white
-            pathOverlay.passedColor = UIColor.gray
-            pathOverlay.passedOutlineColor = UIColor.white
-            pathOverlay.progress = 0.3
-            pathOverlay.mapView = mapView
-            progressPathOverlay = pathOverlay
+        // 단일 경로 찍기
+//        if let pathOverlay = NMFPath(points: coords) {
+//            pathOverlay.width = width
+//            pathOverlay.outlineWidth = outlineWidth
+//            pathOverlay.color = .systemPink
+//            pathOverlay.outlineColor = UIColor.white
+//            pathOverlay.passedColor = UIColor.gray
+//            pathOverlay.passedOutlineColor = UIColor.white
+//            pathOverlay.progress = 0.3
+//            pathOverlay.mapView = mapView
+//            progressPathOverlay = pathOverlay
+//        }
+        
+        // 경유지 포함 경로 찍기
+        if let lineString = self.stringCoords as? [NMGLineString<AnyObject>], let multipartPathOverlay = NMFMultipartPath(lineString) {
+            multipartPathOverlay.colorParts = MultiPartData.colors1
+            multipartPathOverlay.width = width
+            multipartPathOverlay.outlineWidth = outlineWidth
+            multipartPathOverlay.mapView = mapView
+            progressMultipartPath = multipartPathOverlay
         }
+        
     }
     
     @objc func findPath() {
         print("touched")
-        dataManager.shortestPath(dep_lng: 126.7644840, dep_lat: 37.4282975, dest_lng: 128.7614072, dest_lat: 34.8357234, option: "trafast")
+        wayPointIdx.removeAll()
+        coords.removeAll()
+        stringCoords.removeAll()
+        
+        dataManager.shortestPath(depLng: bounds1.southWestLng, depLat: bounds1.southWestLat, destLng: bounds1.northEastLng, destLat: bounds1.northEastLat, wayPoints: "127.15238,37.55484|127.20376,37.62344", option: "trafast")
+        
     }
 }
-
-
-extension NMGLatLng {
-    func positionString() -> String {
-        return String(format: "(%.5f, %.5f)", lat, lng)
-    }
-}
-
-
 
 extension ViewController: ViewControllerDelegate{
     func didSuccessReturnPath(result: Trafast){
-        for i in result.path {
-            CoordsData.coords1.append(NMGLatLng(lat: i[1], lng: i[0]))
+        // 경유지 인덱스 반환
+        
+        for i in result.guide {
+            if i.instructions == "경유지" {
+                wayPointIdx.append(i.pointIndex)
+            }
         }
+        
+        print(wayPointIdx)
+        
+        for i in 0..<result.path.count {
+            coords.append(NMGLatLng(lat: result.path[i][1], lng: result.path[i][0]))
+            
+            for s in wayPointIdx {
+                if i == s {
+                    print("경유지")
+                    stringCoords.append(NMGLineString(points: coords))
+                    coords.removeAll()
+                    break
+                }
+            }
+        }
+        stringCoords.append(NMGLineString(points: coords)) // 마지막까지의 경로
+        
+        
+//        CoordsData.coords = CoordsData.coords.dropFirst()
         initPath()
         
         distanceLabel.text = "이동거리: \(result.summary.distance / 1000)km"
@@ -165,19 +213,21 @@ extension ViewController: ViewControllerDelegate{
         let mins = ((milliseconds / (1000*60)) % 60)
         timeLabel.text = "이동시간: \(hours)시간 \(mins)분"
         
-        let camUpdate = NMFCameraUpdate(fit: boundsFlag ? bounds2 : bounds1, padding: 24)
+        let camUpdate = NMFCameraUpdate(fit: bounds1, padding: 24)
         camUpdate.animation = .fly
         camUpdate.animationDuration = 5
         mapView.moveCamera(camUpdate)
-        boundsFlag = !boundsFlag
     }
     func failedToRequest(message: String){
         print(message)
     }
 }
 
-struct CoordsData {
-   static var coords1 = [NMGLatLng()]
+
+struct MultiPartData {
+    static let colors1: [NMFPathColor] = [
+        NMFPathColor(color: UIColor.red, outlineColor: UIColor.white, passedColor: UIColor.gray, passedOutlineColor: UIColor.white),
+        NMFPathColor(color: UIColor.yellow, outlineColor: UIColor.white, passedColor: UIColor.gray, passedOutlineColor: UIColor.white),
+        NMFPathColor(color: UIColor.green, outlineColor: UIColor.white, passedColor: UIColor.gray, passedOutlineColor: UIColor.white),
+    ]
 }
-
-

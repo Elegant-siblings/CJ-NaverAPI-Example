@@ -46,6 +46,7 @@ struct Section: Decodable {
 struct Summary: Decodable {
     let start: Start
     let goal: Goal
+    let waypoints: [Goal]?
     let distance, duration, etaServiceType: Int
     let departureTime: String
     let bbox: [[Double]]
@@ -55,7 +56,10 @@ struct Summary: Decodable {
 // MARK: - Goal
 struct Goal: Decodable {
     let location: [Double]
-    let dir: Int
+    let dir : Int?
+    let distance: Int?
+    let duration: Int?
+    let pointIndex: Int?
 }
 
 // MARK: - Start
