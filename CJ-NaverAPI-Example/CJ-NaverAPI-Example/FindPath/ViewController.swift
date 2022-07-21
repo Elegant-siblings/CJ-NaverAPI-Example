@@ -12,8 +12,6 @@ import SnapKit
 import Then
 
 
-//public let DEFAULT_CAMERA_POSITION = NMFCameraPosition(NMGLatLng(lat: 37.5666102, lng: 126.9783881), zoom: 14, tilt: 0, heading: 0)
-
 class ViewController: UIViewController {
     
     
@@ -31,6 +29,8 @@ class ViewController: UIViewController {
         $0.textColor = .black
         $0.text = "이동시간"
     }
+    
+    private let locationManager = NMFLocationManager.sharedInstance()
     
     var longitude: CLLocationDegrees!
     var latitude: CLLocationDegrees!
@@ -70,6 +70,10 @@ class ViewController: UIViewController {
         view.addSubview(pathButton)
         view.addSubview(distanceLabel)
         view.addSubview(timeLabel)
+        
+        locationManager?.add(self)
+//        mapView.addObserver(self, forKeyPath: "positionMode", options: [.new, .old, .prior], context: nil)
+        self.mapView.positionMode = .direction
 
         pathButton.addTarget(self, action: #selector(findPath), for: .touchUpInside)
         setConstraints()
@@ -84,6 +88,7 @@ class ViewController: UIViewController {
         let way2Mark = NMFMarker(position: NMGLatLng(lat: way2.lat, lng: way2.lng))
         way2Mark.mapView = mapView
         
+        
 //        if let way = wayPoints {
 //            for i in way {
 //                wayPointsToString! += i.map({"\($0)"}).joined(separator: ",")
@@ -92,6 +97,19 @@ class ViewController: UIViewController {
 //        } else {
 //            wayPointsToString = nil
 //        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+//        let DEFAULT_CAMERA_POSITION = NMFCameraPosition(locationManager!.currentLatLng(), zoom: 14, tilt: 0, heading: 0)
+//        let camUpdate = NMFCameraUpdate(position: DEFAULT_CAMERA_POSITION)
+//        camUpdate.animation = .fly
+//        camUpdate.animationDuration = 5
+//        mapView.moveCamera(camUpdate)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        locationManager?.remove(self)
+        print(locationManager?.currentLatLng())
     }
     
 //    init(dep_lng: Double, dep_lat: Double, dest_lng: Double, dest_lat: Double) {
@@ -174,6 +192,10 @@ class ViewController: UIViewController {
         dataManager.shortestPath(depLng: bounds1.southWestLng, depLat: bounds1.southWestLat, destLng: bounds1.northEastLng, destLat: bounds1.northEastLat, wayPoints: "127.15238,37.55484|127.20376,37.62344", option: "trafast")
         
     }
+}
+
+extension ViewController: NMFLocationManagerDelegate {
+
 }
 
 extension ViewController: ViewControllerDelegate{
