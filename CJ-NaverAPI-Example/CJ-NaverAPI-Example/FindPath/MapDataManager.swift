@@ -16,8 +16,16 @@ class MapDataManager: MapDataManagerDelegate {
         self.delegate = delegate
     }
     
-    func shortestPath(depLng: Double, depLat: Double, destLng: Double, destLat: Double, wayPoints: String, option: String) {
-        let urlString : String = "\(Constant.shared.FIND_PATH_BASE_URL)?start=\(depLng),\(depLat)&goal=\(destLng),\(destLat)&waypoints=\(wayPoints)&option=\(option)"
+    func shortestPath(depLng: Double, depLat: Double, destLng: Double, destLat: Double, wayPoints: String?, option: String) {
+        
+        var urlString = ""
+        
+        if let wayPoints = wayPoints {
+            urlString = "\(Constant.shared.FIND_PATH_BASE_URL)?start=\(depLng),\(depLat)&goal=\(destLng),\(destLat)&waypoints=\(wayPoints)&option=\(option)"
+        } else {
+            urlString = "\(Constant.shared.FIND_PATH_BASE_URL)?start=\(depLng),\(depLat)&goal=\(destLng),\(destLat)&option=\(option)"
+        }
+        
         
         // 왜 이 처리를 해야되지?
         if let encoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed),let url = URL(string: encoded) {

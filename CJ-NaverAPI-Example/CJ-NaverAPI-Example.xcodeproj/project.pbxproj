@@ -15,6 +15,7 @@
 		328885952875B87500F33266 /* NMapsMap.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328885912875B86200F33266 /* NMapsMap.xcframework */; };
 		328885982875B87700F33266 /* Pods_CJ_NaverAPI_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1297449F01F81DD12C3DB1CB /* Pods_CJ_NaverAPI_Example.framework */; };
 		328CA3FF287714DC0021A616 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CA3FE287714DC0021A616 /* UIViewController.swift */; };
+		32A9EB9D288A7AA500F033AB /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A9EB9C288A7AA500F033AB /* UIColor.swift */; };
 		32C9279F287DA16200C781FC /* MapDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C9279E287DA16200C781FC /* MapDataManager.swift */; };
 		32C927A1287DA4A400C781FC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C927A0287DA4A400C781FC /* Constant.swift */; };
 		32C927A4287DA6E400C781FC /* MapResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C927A3287DA6E400C781FC /* MapResponse.swift */; };
@@ -33,6 +34,7 @@
 		1D7210ED28724ED10037D492 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		328885912875B86200F33266 /* NMapsMap.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NMapsMap.xcframework; path = Pods/NMapsMap/framework/NMapsMap.xcframework; sourceTree = "<group>"; };
 		328CA3FE287714DC0021A616 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		32A9EB9C288A7AA500F033AB /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		32C9279E287DA16200C781FC /* MapDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDataManager.swift; sourceTree = "<group>"; };
 		32C927A0287DA4A400C781FC /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		32C927A3287DA6E400C781FC /* MapResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapResponse.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				328CA3FE287714DC0021A616 /* UIViewController.swift */,
+				32A9EB9C288A7AA500F033AB /* UIColor.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				1D7210E428724ED00037D492 /* ViewController.swift in Sources */,
 				1D7210E028724ED00037D492 /* AppDelegate.swift in Sources */,
 				1D7210E228724ED00037D492 /* SceneDelegate.swift in Sources */,
+				32A9EB9D288A7AA500F033AB /* UIColor.swift in Sources */,
 				32C927A1287DA4A400C781FC /* Constant.swift in Sources */,
 				32C927A4287DA6E400C781FC /* MapResponse.swift in Sources */,
 				32C9279F287DA16200C781FC /* MapDataManager.swift in Sources */,
@@ -384,7 +388,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H8B2PN25Z8;
+				DEVELOPMENT_TEAM = DJ9XQ898HT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "CJ-NaverAPI-Example/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -413,7 +417,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H8B2PN25Z8;
+				DEVELOPMENT_TEAM = DJ9XQ898HT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "CJ-NaverAPI-Example/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
