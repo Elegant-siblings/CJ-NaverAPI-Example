@@ -10,6 +10,6 @@ target 'CJ-NaverAPI-Example' do
   pod 'NMapsMap'
   pod 'Then'
   pod 'Alamofire'
-
+  pod 'PanModal'
 end
 

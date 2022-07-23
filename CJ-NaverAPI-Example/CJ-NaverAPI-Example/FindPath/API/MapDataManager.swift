@@ -51,4 +51,17 @@ class MapDataManager: MapDataManagerDelegate {
         }
         
     }
+    
+    func dockerExample() {
+        AF.request("http://localhost:3000", method: .get)
+            .validate()
+            .responseDecodable(of: Welcome.self) { response in
+                switch response.result {
+                case .success(let response):
+                    print(response)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
 }

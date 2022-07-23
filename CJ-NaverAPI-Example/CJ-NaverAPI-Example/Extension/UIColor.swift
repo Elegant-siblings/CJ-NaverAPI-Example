@@ -25,4 +25,16 @@ extension UIColor {
     class var pathPink: UIColor { UIColor(hex: 0xe355a9) }
     class var pathGreen: UIColor { UIColor(hex: 0x08da75) }
     class var pathBlack: UIColor { UIColor(hex: 0x000000) }
+    
+    
+    class var CjRed : UIColor { UIColor(hex: 0xFF6F6F) }
+    class var CjBlue : UIColor { UIColor(hex: 0x6FBAFF) }
+    class var CjOrange : UIColor { UIColor(hex: 0xFF9A6F) }
+    class var CjYellow : UIColor { UIColor(hex: 0xFFCE6E) }
+    class var CjWhite : UIColor { UIColor(hex: 0xF9F9F9) }
+    
+    
+    class var borderColor : UIColor { UIColor(hex: 0x888585)}
+    class var customLightGray : UIColor { UIColor(hex: 0xCCCCCC) }
+
 }

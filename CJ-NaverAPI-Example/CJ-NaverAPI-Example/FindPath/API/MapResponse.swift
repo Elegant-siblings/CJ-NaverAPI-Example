@@ -68,3 +68,20 @@ struct Start: Decodable {
 }
 
 
+
+//DockerExample
+
+// MARK: - Welcome
+struct Welcome: Decodable {
+    let success: Bool
+    let rows: [Row]
+}
+
+// MARK: - Row
+struct Row : Decodable {
+    let id: Int
+    let deliveryDate, deliveryTime: String
+    let deliveryMan: Int
+    let sender, senderAddress, reciver, reciverAddress: String
+    let deliveryCategory: String
+}

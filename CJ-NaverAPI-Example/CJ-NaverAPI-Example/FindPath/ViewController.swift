@@ -10,6 +10,7 @@ import CoreLocation
 import NMapsMap
 import SnapKit
 import Then
+import PanModal
 
 // MARK: - init 시 필요한 값: 1. 출발/목적지 위/경도 값 2. 경유지 포인트 위/경도 값(array)
 
@@ -23,13 +24,27 @@ class ViewController: UIViewController {
     
     let distanceLabel = UILabel().then {
         $0.textColor = .black
-        $0.text = "이동거리"
+        $0.text = "km"
+        $0.font = UIFont.AppleSDGothicNeo(.bold, size: 13)
     }
     
     let timeLabel = UILabel().then {
         $0.textColor = .black
-        $0.text = "이동시간"
+        $0.text = "시간"
+        $0.font = UIFont.AppleSDGothicNeo(.bold, size: 13)
     }
+    let timeAssumptionLabel = UILabel().then {
+        $0.textColor = .black
+        $0.text = "도착 예정 시간"
+        $0.font = UIFont.AppleSDGothicNeo(.bold, size: 13)
+    }
+    
+    let infoView = UIView().then  {
+        $0.backgroundColor = .white
+        $0.alpha = 0.75
+    }
+    
+    let bottomSheetVC = BottomSheetViewController()
     
     private let locationManager = NMFLocationManager.sharedInstance()
     
@@ -84,16 +99,18 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.view.backgroundColor = .white
         
+        dataManager.dockerExample()
+        
         view.addSubview(mapView)
-        view.addSubview(pathButton)
-        view.addSubview(distanceLabel)
-        view.addSubview(timeLabel)
+        mapView.addSubview(infoView)
+        infoView.addSubviews([distanceLabel, timeLabel, timeAssumptionLabel])
+        
         
         //위치 표시하기
         locationManager!.add(self)
         self.mapView.positionMode = .direction
         
-        //내 위치로 카메라 이동하는거 ㄹㅇ 못 해먹곘어 씨발
+        // 내 위치로 카메라 이동하는거 ㄹㅇ 못 해먹곘어 씨발
 //        if let location = locationManager?.currentLatLng() {
 //            let camUpdate = NMFCameraUpdate(position: NMFCameraPosition(location), zoom: 16)
 //            camUpdate.animation = .fly
@@ -141,6 +158,10 @@ class ViewController: UIViewController {
             wayPointsToString += "\(i.lng),\(i.lat)|"
         }
         wayPointsToString = String(wayPointsToString.dropLast())
+        
+
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -157,27 +178,39 @@ class ViewController: UIViewController {
     func setConstraints() {
 
         mapView.snp.makeConstraints { make in
-            make.width.equalTo(self.view)
-            make.height.equalTo(500)
+            make.leading.equalTo(self.view)
+            make.trailing.equalTo(self.view)
+            make.bottom.equalTo(self.view).offset(-200)
             make.top.equalTo(self.view)
         }
-        
+        infoView.snp.makeConstraints { make in
+            make.leading.equalTo(mapView.snp.leading).offset(40)
+            make.trailing.equalTo(mapView.snp.trailing).offset(-40)
+            make.height.equalTo(31)
+            make.bottom.equalTo(self.view).offset(-300)
+        }
         // UIButton
-        pathButton.snp.makeConstraints { make in
-            make.width.equalTo(100)
-            make.height.equalTo(30)
-            make.centerX.equalTo(self.view)
-            make.top.equalTo(mapView.snp.bottom).offset(30)
+//        pathButton.snp.makeConstraints { make in
+//            make.width.equalTo(100)
+//            make.height.equalTo(30)
+//            make.centerX.equalTo(self.view)
+//            make.top.equalTo(mapView.snp.bottom).offset(30)
+//        }
+        
+        // UILabel
+        timeAssumptionLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(infoView.snp.centerY)
+            make.leading.equalTo(infoView.snp.leading).offset(20)
         }
         
         timeLabel.snp.makeConstraints { make in
-            make.centerX.equalTo(self.view.snp.centerX)
-            make.top.equalTo(pathButton.snp.bottom).offset(20)
+            make.centerY.equalTo(infoView.snp.centerY)
+            make.centerX.equalTo(infoView.snp.centerX)
         }
         
         distanceLabel.snp.makeConstraints { make in
-            make.centerX.equalTo(self.view.snp.centerX)
-            make.top.equalTo(timeLabel.snp.bottom).offset(20)
+            make.centerY.equalTo(infoView.snp.centerY)
+            make.trailing.equalTo(infoView.snp.trailing).offset(-20)
         }
     }
 
@@ -265,17 +298,21 @@ extension ViewController: ViewControllerDelegate{
 //        CoordsData.coords = CoordsData.coords.dropFirst()
         initPath()
         
-        distanceLabel.text = "이동거리: \(result.summary.distance / 1000)km"
+        distanceLabel.text = "\(result.summary.distance / 1000)km"
         
         let milliseconds = result.summary.duration
         let hours = ((milliseconds / (1000*60*60)) % 24)
         let mins = ((milliseconds / (1000*60)) % 60)
-        timeLabel.text = "이동시간: \(hours)시간 \(mins)분"
+        timeLabel.text = "\(hours)시간 \(mins)분"
         
         let camUpdate = NMFCameraUpdate(fit: bounds1, padding: 24)
         camUpdate.animation = .fly
         camUpdate.animationDuration = 5
         mapView.moveCamera(camUpdate)
+        
+        
+        bottomSheetVC.modalPresentationStyle = .pageSheet
+        self.presentPanModal(bottomSheetVC)
     }
     func failedToRequest(message: String){
         print(message)
