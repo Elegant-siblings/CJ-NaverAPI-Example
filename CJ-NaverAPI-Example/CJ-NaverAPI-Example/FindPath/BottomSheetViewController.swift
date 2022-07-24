@@ -12,12 +12,18 @@ import SnapKit
 
 class BottomSheetViewController: UIViewController {
     
+    
+    // Table 정보
     let tableRowHeight = CGFloat(40)
     let titles = ["배송기사", "송장번호", "상품정보", "보내는 분", "받는 분", "보내는 주소", "받는 주소", "요청사항"]
     let contents = ["AXSD-SDXD-****-ZS**", "1233567", "홍삼즙", "다** (053-573-****)", "최** (010-2287-****)", "서울특별시 서초구 양재동 225-5", "서울특별시 서초구 양재동 225-5", "개가 뭅니다"]
     var lists = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh"]
     
+    // Bool Variable
+    var onDelivery : Bool = true
     
+    
+    //MARK: - 컴포넌트 정의
     
     let tableView = UITableView().then {
 //        let table = ListTableView(
@@ -30,7 +36,8 @@ class BottomSheetViewController: UIViewController {
         $0.allowsSelection = false
         $0.separatorColor = UIColor.customLightGray
         $0.separatorInset = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 4)
-        $0.isScrollEnabled = false
+        $0.layer.addShadow(location: [.top, .bottom])
+        $0.isScrollEnabled = true
         $0.register(InfoTableViewCell.self, forCellReuseIdentifier: InfoTableViewCell.identifier)
     }
     
@@ -55,17 +62,20 @@ class BottomSheetViewController: UIViewController {
     
     let deliveryIngButton = MainButton(type: .main).then {
         $0.backgroundColor = .CjRed
-        $0.tintColor = .white
+        $0.layer.borderColor = UIColor.CjRed.cgColor
         $0.setTitle("배송중", for: .normal)
+        $0.addTarget(self, action: #selector(toggleDeliveryStatus), for: .touchUpInside)
     }
     let eatingMealButton = MainButton(type: .main).then {
-        $0.backgroundColor = .CjRed
-        $0.tintColor = .white
+        $0.backgroundColor = .white
+        $0.setTitleColor(.CjRed, for: .normal)
+        $0.layer.borderColor = UIColor.CjRed.cgColor
         $0.setTitle("식사중", for: .normal)
+        $0.addTarget(self, action: #selector(toggleDeliveryStatus), for: .touchUpInside)
     }
     let deliveryCompletedButton = MainButton(type: .main).then {
         $0.backgroundColor = .customLightGray
-        $0.tintColor = .white
+        $0.layer.borderColor = UIColor.customLightGray.cgColor
         $0.setTitle("배달 완료", for: .normal)
     }
     
@@ -92,7 +102,9 @@ class BottomSheetViewController: UIViewController {
             make.top.equalToSuperview()
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.height.equalTo(CGFloat(lists.count)*tableRowHeight)
+            make.height.equalTo(280)
+
+//            make.height.equalTo(CGFloat(lists.count)*tableRowHeight)
         }
         
         //UIButton
@@ -118,17 +130,40 @@ class BottomSheetViewController: UIViewController {
         //UILabel
         leftDeliveryItemsLabel.snp.makeConstraints { make in
             make.centerX.equalTo(self.view)
-            make.bottom.equalTo(leftDistanceLabel.snp.top).offset(-10)
+            make.bottom.equalTo(leftDistanceLabel.snp.top).offset(-12)
         }
         leftDistanceLabel.snp.makeConstraints { make in
             make.centerX.equalTo(self.view)
-            make.bottom.equalTo(deliveryEndTimeLabel.snp.top).offset(-10)
+            make.bottom.equalTo(deliveryEndTimeLabel.snp.top).offset(-12)
         }
         deliveryEndTimeLabel.snp.makeConstraints { make in
             make.centerX.equalTo(self.view)
-            make.bottom.equalTo(deliveryIngButton.snp.top).offset(-10)
+            make.bottom.equalTo(deliveryIngButton.snp.top).offset(-12)
         }
     }
+    
+    
+    @objc func toggleDeliveryStatus() {
+        if !onDelivery {
+            deliveryIngButton.backgroundColor = .white
+            deliveryIngButton.setTitleColor(.CjRed, for: .normal)
+
+            eatingMealButton.backgroundColor = .CjRed
+            eatingMealButton.setTitleColor(.white, for: .normal)
+
+        } else {
+            deliveryIngButton.backgroundColor = .CjRed
+            deliveryIngButton.setTitleColor(.white, for: .normal)
+
+            eatingMealButton.backgroundColor = .white
+            eatingMealButton.setTitleColor(.CjRed, for: .normal)
+
+        }
+        
+        onDelivery = !onDelivery
+    }
+    
+    
 
 
 
@@ -167,24 +202,39 @@ extension BottomSheetViewController: PanModalPresentable {
     
     // 스크롤되는 tableview 나 collectionview 가 있다면 여기에 넣어주면 PanModal 이 모달과 스크롤 뷰 사이에서 팬 제스처를 원활하게 전환합니다.
     var panScrollable: UIScrollView? {
-        return nil
+        return tableView
     }
 
     var shortFormHeight: PanModalHeight {
         return .contentHeight(220)
     }
+    
+    var allowsTapToDismiss: Bool {
+        return true
+    }
+//
+    var longFormHeight : PanModalHeight {
+        return .contentHeight(500)
+    }
 
-    var longFormHeight: PanModalHeight {
-        return .maxHeightWithTopInset(40)
+//    var longFormHeight: PanModalHeight {
+//        return .maxHeightWithTopInset(40)
+//    }
+    
+    
+    var shouldRoundTopCorners: Bool {
+        return true
     }
     
-    //드래그로 내려도 화면이 사라지지 않는다
-    var allowsDragToDismiss: Bool {
-            return false
-        }
         
     // BottomSheet 호출 시 백그라운드 색상 지정
     var panModalBackgroundColor: UIColor {
         return UIColor.clear
     }
+    
+    func shouldPrioritize(panModalGestureRecognizer: UIPanGestureRecognizer) -> Bool {
+        return false
+    }
+
+
 }

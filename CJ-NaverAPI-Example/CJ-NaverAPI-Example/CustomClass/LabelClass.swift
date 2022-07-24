@@ -33,7 +33,7 @@ class MainLabel: UILabel {
         switch type {
         case .main:
             self.textColor = .black
-            self.font = UIFont.AppleSDGothicNeo(.bold, size: 15)
+            self.font = UIFont.AppleSDGothicNeo(.bold, size: 16)
         }
     }
     

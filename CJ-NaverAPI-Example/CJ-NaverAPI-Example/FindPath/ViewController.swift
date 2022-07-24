@@ -17,9 +17,11 @@ import PanModal
 class ViewController: UIViewController {
     
     
-    let pathButton = UIButton().then {
-        $0.backgroundColor = .green
-        $0.setTitle("경로 하나씩 보기", for: .normal)
+    let pathButton = MainButton(type: .main).then {
+        $0.backgroundColor = .CjBlue
+        $0.layer.borderColor = UIColor.CjBlue.cgColor
+        $0.setTitle("배송 현황", for: .normal)
+        $0.addTarget(self, action: #selector(showTable), for: .touchUpInside)
     }
     
     let distanceLabel = UILabel().then {
@@ -35,13 +37,13 @@ class ViewController: UIViewController {
     }
     let timeAssumptionLabel = UILabel().then {
         $0.textColor = .black
-        $0.text = "도착 예정 시간"
+        $0.text = "도착 예정"
         $0.font = UIFont.AppleSDGothicNeo(.bold, size: 13)
     }
     
     let infoView = UIView().then  {
         $0.backgroundColor = .white
-        $0.alpha = 0.75
+        $0.alpha = 0.8
     }
     
     let bottomSheetVC = BottomSheetViewController()
@@ -84,6 +86,7 @@ class ViewController: UIViewController {
     
     let mapView = NMFMapView().then{
         $0.allowsZooming = true
+        $0.layer.addShadow(location: [.bottom])
     }
     
     //    init(dep_lng: Double, dep_lat: Double, dest_lng: Double, dest_lat: Double) {
@@ -101,7 +104,8 @@ class ViewController: UIViewController {
         
         dataManager.dockerExample()
         
-        view.addSubview(mapView)
+        
+        view.addSubviews([mapView, pathButton])
         mapView.addSubview(infoView)
         infoView.addSubviews([distanceLabel, timeLabel, timeAssumptionLabel])
         
@@ -122,7 +126,7 @@ class ViewController: UIViewController {
 //
 
         //경로 찾기 함수 실행
-        pathButton.addTarget(self, action: #selector(serialPath), for: .touchUpInside)
+//        pathButton.addTarget(self, action: #selector(serialPath), for: .touchUpInside)
         setConstraints()
         
         // 출발 & 도착 위치 마커 찍기
@@ -159,15 +163,16 @@ class ViewController: UIViewController {
         }
         wayPointsToString = String(wayPointsToString.dropLast())
         
-
+        
+        configurePath()
         
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        //path 설정
-        configurePath()
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        //path 설정
+//        configurePath()
+//    }
     
     override func viewDidDisappear(_ animated: Bool) {
         //뷰 벗어날 때 위치 받기 해제
@@ -184,18 +189,18 @@ class ViewController: UIViewController {
             make.top.equalTo(self.view)
         }
         infoView.snp.makeConstraints { make in
-            make.leading.equalTo(mapView.snp.leading).offset(40)
-            make.trailing.equalTo(mapView.snp.trailing).offset(-40)
+            make.leading.equalTo(mapView.snp.leading).offset(20)
+            make.trailing.equalTo(mapView.snp.trailing).offset(-20)
             make.height.equalTo(31)
             make.bottom.equalTo(self.view).offset(-300)
         }
         // UIButton
-//        pathButton.snp.makeConstraints { make in
-//            make.width.equalTo(100)
-//            make.height.equalTo(30)
-//            make.centerX.equalTo(self.view)
-//            make.top.equalTo(mapView.snp.bottom).offset(30)
-//        }
+        pathButton.snp.makeConstraints { make in
+            make.width.equalTo(127)
+            make.height.equalTo(48)
+            make.centerX.equalTo(self.view)
+            make.top.equalTo(mapView.snp.bottom).offset(30)
+        }
         
         // UILabel
         timeAssumptionLabel.snp.makeConstraints { make in
@@ -250,6 +255,7 @@ class ViewController: UIViewController {
         stringCoords.removeAll()
         
         print(wayPointsToString)
+        self.showIndicator()
         dataManager.shortestPath(depLng: bounds1.southWestLng, depLat: bounds1.southWestLat, destLng: bounds1.northEastLng, destLat: bounds1.northEastLat, wayPoints: wayPointsToString ?? nil, option: "trafast")
     }
     
@@ -264,6 +270,11 @@ class ViewController: UIViewController {
         mapView.moveCamera(camUpdate)
         
         boundsIdx += 1
+    }
+    
+    @objc func showTable() {
+        bottomSheetVC.modalPresentationStyle = .overCurrentContext
+        self.presentPanModal(bottomSheetVC)
     }
 }
 
@@ -305,19 +316,24 @@ extension ViewController: ViewControllerDelegate{
         let mins = ((milliseconds / (1000*60)) % 60)
         timeLabel.text = "\(hours)시간 \(mins)분"
         
+        let date = Date()
+//        let dateHour = Calendar.current.date(byAdding: .hour, value: hours, to: date)
+//        let dateMin = Calendar.current.date(byAdding: .minute, value: mins, to: dateHour)
+        
+        
         let camUpdate = NMFCameraUpdate(fit: bounds1, padding: 24)
         camUpdate.animation = .fly
-        camUpdate.animationDuration = 5
+        camUpdate.animationDuration = 1
         mapView.moveCamera(camUpdate)
         
+        self.dismissIndicator()
         
-        bottomSheetVC.modalPresentationStyle = .pageSheet
-        self.presentPanModal(bottomSheetVC)
     }
     func failedToRequest(message: String){
         print(message)
     }
 }
+
 
 
 struct MultiPartData {

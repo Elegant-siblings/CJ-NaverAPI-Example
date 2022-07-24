@@ -23,6 +23,7 @@
 		329B19B5288C009C00C17CA2 /* LabelClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329B19B4288C009C00C17CA2 /* LabelClass.swift */; };
 		329B19B7288C00A600C17CA2 /* ButtonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329B19B6288C00A600C17CA2 /* ButtonClass.swift */; };
 		329B19B9288C04E800C17CA2 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329B19B8288C04E800C17CA2 /* Device.swift */; };
+		32A460A6288CFBBF00B79C51 /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A460A5288CFBBF00B79C51 /* CALayer.swift */; };
 		32A9EB9D288A7AA500F033AB /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A9EB9C288A7AA500F033AB /* UIColor.swift */; };
 		32C9279F287DA16200C781FC /* MapDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C9279E287DA16200C781FC /* MapDataManager.swift */; };
 		32C927A1287DA4A400C781FC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C927A0287DA4A400C781FC /* Constant.swift */; };
@@ -50,6 +51,7 @@
 		329B19B4288C009C00C17CA2 /* LabelClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelClass.swift; sourceTree = "<group>"; };
 		329B19B6288C00A600C17CA2 /* ButtonClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonClass.swift; sourceTree = "<group>"; };
 		329B19B8288C04E800C17CA2 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		32A460A5288CFBBF00B79C51 /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
 		32A9EB9C288A7AA500F033AB /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		32C9279E287DA16200C781FC /* MapDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDataManager.swift; sourceTree = "<group>"; };
 		32C927A0287DA4A400C781FC /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				32A9EB9C288A7AA500F033AB /* UIColor.swift */,
 				329B19A7288BC06300C17CA2 /* UIView.swift */,
 				329B19AE288BDC7000C17CA2 /* UIFont.swift */,
+				32A460A5288CFBBF00B79C51 /* CALayer.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				32C927A4287DA6E400C781FC /* MapResponse.swift in Sources */,
 				329B19B1288BE3E500C17CA2 /* InfoTableViewCell.swift in Sources */,
 				32C9279F287DA16200C781FC /* MapDataManager.swift in Sources */,
+				32A460A6288CFBBF00B79C51 /* CALayer.swift in Sources */,
 				329B19B7288C00A600C17CA2 /* ButtonClass.swift in Sources */,
 				328CA3FF287714DC0021A616 /* UIViewController.swift in Sources */,
 			);
