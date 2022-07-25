@@ -16,7 +16,6 @@ import PanModal
 
 class ViewController: UIViewController {
     
-    
     let pathButton = MainButton(type: .main).then {
         $0.backgroundColor = .CjBlue
         $0.layer.borderColor = UIColor.CjBlue.cgColor
@@ -259,6 +258,8 @@ class ViewController: UIViewController {
         dataManager.shortestPath(depLng: bounds1.southWestLng, depLat: bounds1.southWestLat, destLng: bounds1.northEastLng, destLat: bounds1.northEastLat, wayPoints: wayPointsToString ?? nil, option: "trafast")
     }
     
+    
+    
     @objc func serialPath() {
         if boundsIdx == boundsArray.count {
             boundsIdx = 0
@@ -273,8 +274,17 @@ class ViewController: UIViewController {
     }
     
     @objc func showTable() {
+        print("show")
+        bottomSheetVC.delegate = self
         bottomSheetVC.modalPresentationStyle = .overCurrentContext
         self.presentPanModal(bottomSheetVC)
+    }
+}
+
+extension ViewController: ViewDelegate {
+    func pushed() {
+        let nextVC = DeliveryCompletedViewController()
+        navigationController?.pushViewController(nextVC, animated: true)
     }
 }
 

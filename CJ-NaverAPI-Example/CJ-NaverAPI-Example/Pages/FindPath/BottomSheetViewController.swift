@@ -12,6 +12,7 @@ import SnapKit
 
 class BottomSheetViewController: UIViewController {
     
+    weak var delegate : ViewDelegate!
     
     // Table 정보
     let tableRowHeight = CGFloat(40)
@@ -77,6 +78,7 @@ class BottomSheetViewController: UIViewController {
         $0.backgroundColor = .customLightGray
         $0.layer.borderColor = UIColor.customLightGray.cgColor
         $0.setTitle("배달 완료", for: .normal)
+        $0.addTarget(self, action: #selector(deliveryCompleted), for: .touchUpInside)
     }
     
     
@@ -159,13 +161,14 @@ class BottomSheetViewController: UIViewController {
             eatingMealButton.setTitleColor(.CjRed, for: .normal)
 
         }
-        
         onDelivery = !onDelivery
     }
     
-    
-
-
+    @objc func deliveryCompleted() {
+        print("pushed")
+        delegate.pushed()
+        self.dismiss(animated: true)
+    }
 
 }
 
