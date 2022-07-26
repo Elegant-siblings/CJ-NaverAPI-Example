@@ -166,8 +166,9 @@ class BottomSheetViewController: UIViewController {
     
     @objc func deliveryCompleted() {
         print("pushed")
-        delegate.pushed()
         self.dismiss(animated: true)
+        delegate.pushed()
+        
     }
 
 }

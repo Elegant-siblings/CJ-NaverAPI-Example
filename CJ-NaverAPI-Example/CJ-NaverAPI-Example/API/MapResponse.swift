@@ -73,15 +73,16 @@ struct Start: Decodable {
 
 // MARK: - Welcome
 struct Welcome: Decodable {
-    let success: Bool
-    let rows: [Row]
+    let start: [String]
+    let waypoint: [[String]]
+    let finish: [String]
 }
 
 // MARK: - Row
-struct Row : Decodable {
-    let id: Int
-    let deliveryDate, deliveryTime: String
-    let deliveryMan: Int
-    let sender, senderAddress, reciver, reciverAddress: String
-    let deliveryCategory: String
-}
+//struct Row : Decodable {
+//    let id: Int
+//    let deliveryDate, deliveryTime: String
+//    let deliveryMan: Int
+//    let sender, senderAddress, reciver, reciverAddress: String
+//    let deliveryCategory: String
+//}

@@ -18,9 +18,23 @@ class ViewController: UIViewController {
     
     let pathButton = MainButton(type: .main).then {
         $0.backgroundColor = .CjBlue
+        $0.cornerRadius = 30
         $0.layer.borderColor = UIColor.CjBlue.cgColor
-        $0.setTitle("배송 현황", for: .normal)
-        $0.addTarget(self, action: #selector(showTable), for: .touchUpInside)
+        $0.setImage(UIImage(systemName: "shippingbox"), for: .normal)
+        $0.setPreferredSymbolConfiguration(.init(pointSize: 25), forImageIn: .normal)
+        $0.adjustsImageWhenHighlighted = false
+        $0.tintColor = .CjWhite
+        
+    }
+    let zoomWayButton = MainButton(type: .main).then {
+        $0.backgroundColor = .CjYellow
+        $0.cornerRadius = 30
+        $0.layer.borderColor = UIColor.CjYellow.cgColor
+        $0.setImage(UIImage(systemName: "location.magnifyingglass"), for: .normal)
+        $0.setPreferredSymbolConfiguration(.init(pointSize: 25), forImageIn: .normal)
+        $0.adjustsImageWhenHighlighted = false
+        $0.tintColor = .CjWhite
+        
     }
     
     let distanceLabel = UILabel().then {
@@ -42,7 +56,7 @@ class ViewController: UIViewController {
     
     let infoView = UIView().then  {
         $0.backgroundColor = .white
-        $0.alpha = 0.8
+        $0.alpha = 1
     }
     
     let bottomSheetVC = BottomSheetViewController()
@@ -55,7 +69,7 @@ class ViewController: UIViewController {
     //출발 & 도착 위치 정보: southWest -> 출발, nortEast -> 도착
 //    let departLocation = NMGLatLng(lat: 37.7014553, lng: 126.7644840)
 //    let destLocation = NMGLatLng(lat: 37.4282975, lng: 127.1837949)
-    let bounds1 = NMGLatLngBounds(southWest: NMGLatLng(lat: 37.4282975, lng: 126.7644840),
+    var bounds1 = NMGLatLngBounds(southWest: NMGLatLng(lat: 37.4282975, lng: 126.7644840),
                                   northEast: NMGLatLng(lat: 37.7014553, lng: 127.1837949))
     
     let boundsArray = [NMGLatLngBounds(southWest: NMGLatLng(lat: 37.4282975, lng: 126.7644840),
@@ -67,7 +81,7 @@ class ViewController: UIViewController {
     var boundsIdx = 0
     
     // 경유지 정보
-    let wayPoitns = [NMGLatLng(lat: 37.55484, lng: 127.15238),
+    var wayPoitns = [NMGLatLng(lat: 37.55484, lng: 127.15238),
                      NMGLatLng(lat: 37.62344, lng: 127.20376)]
     var wayPointsToString : String = ""
     let wayPointNames = ["경유지1", "경유지2"]
@@ -101,13 +115,23 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.view.backgroundColor = .white
         
-        dataManager.dockerExample()
+//        dataManager.dockerExample()
+        
+        navigationController?.navigationBar.isHidden = true
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        self.navigationItem.backBarButtonItem = backBarButtonItem
+        self.navigationItem.backBarButtonItem?.tintColor = .white
         
         
-        view.addSubviews([mapView, pathButton])
-        mapView.addSubview(infoView)
+        pathButton.addTarget(self, action: #selector(showTable), for: .touchUpInside)
+        zoomWayButton.addTarget(self, action: #selector(serialPath), for: .touchUpInside)
+        
+        view.addSubviews([mapView])
+        mapView.addSubviews([infoView, pathButton, zoomWayButton])
         infoView.addSubviews([distanceLabel, timeLabel, timeAssumptionLabel])
         
+//        self.mapView.bringSubviewToFront(pathButton)
+//        self.mapView.bringSubviewToFront(zoomWayButton)
         
         //위치 표시하기
         locationManager!.add(self)
@@ -163,6 +187,8 @@ class ViewController: UIViewController {
         wayPointsToString = String(wayPointsToString.dropLast())
         
         
+        dataManager.dockerExample()
+        
         configurePath()
         
         
@@ -184,21 +210,27 @@ class ViewController: UIViewController {
         mapView.snp.makeConstraints { make in
             make.leading.equalTo(self.view)
             make.trailing.equalTo(self.view)
-            make.bottom.equalTo(self.view).offset(-200)
+            make.bottom.equalTo(self.view)
             make.top.equalTo(self.view)
         }
         infoView.snp.makeConstraints { make in
             make.leading.equalTo(mapView.snp.leading).offset(20)
             make.trailing.equalTo(mapView.snp.trailing).offset(-20)
             make.height.equalTo(31)
-            make.bottom.equalTo(self.view).offset(-300)
+            make.bottom.equalTo(mapView.snp.bottom).offset(-60)
         }
         // UIButton
         pathButton.snp.makeConstraints { make in
-            make.width.equalTo(127)
-            make.height.equalTo(48)
-            make.centerX.equalTo(self.view)
-            make.top.equalTo(mapView.snp.bottom).offset(30)
+            make.width.equalTo(60)
+            make.height.equalTo(60)
+            make.trailing.equalTo(self.view).offset(-30)
+            make.bottom.equalTo(infoView.snp.top).offset(-30)
+        }
+        zoomWayButton.snp.makeConstraints { make in
+            make.width.equalTo(60)
+            make.height.equalTo(60)
+            make.trailing.equalTo(self.view).offset(-30)
+            make.bottom.equalTo(pathButton.snp.top).offset(-10)
         }
         
         // UILabel
@@ -261,11 +293,12 @@ class ViewController: UIViewController {
     
     
     @objc func serialPath() {
+        print("zoom")
         if boundsIdx == boundsArray.count {
             boundsIdx = 0
         }
         
-        let camUpdate = NMFCameraUpdate(fit: boundsArray[boundsIdx], padding: 24)
+        let camUpdate = NMFCameraUpdate(fit: boundsArray[boundsIdx], padding: 40)
         camUpdate.animation = .fly
         camUpdate.animationDuration = 1
         mapView.moveCamera(camUpdate)
@@ -275,6 +308,7 @@ class ViewController: UIViewController {
     
     @objc func showTable() {
         print("show")
+        
         bottomSheetVC.delegate = self
         bottomSheetVC.modalPresentationStyle = .overCurrentContext
         self.presentPanModal(bottomSheetVC)
@@ -331,7 +365,7 @@ extension ViewController: ViewControllerDelegate{
 //        let dateMin = Calendar.current.date(byAdding: .minute, value: mins, to: dateHour)
         
         
-        let camUpdate = NMFCameraUpdate(fit: bounds1, padding: 24)
+        let camUpdate = NMFCameraUpdate(fit: bounds1, padding: 40)
         camUpdate.animation = .fly
         camUpdate.animationDuration = 1
         mapView.moveCamera(camUpdate)
@@ -339,10 +373,20 @@ extension ViewController: ViewControllerDelegate{
         self.dismissIndicator()
         
     }
+    
+    func didSuccessReceivedLngLat(result: Welcome) {
+        bounds1 = NMGLatLngBounds(southWest: NMGLatLng(lat: Double(result.start[0]) ?? 0, lng: Double(result.start[1]) ?? 0), northEast: NMGLatLng(lat: Double(result.finish[0]) ?? 0, lng: Double(result.finish[1]) ?? 0))
+        
+        for i in result.waypoint{
+            wayPoitns.append(NMGLatLng(lat: Double(i[0]) ?? 0, lng: Double(i[1]) ?? 0))
+        }
+    }
+    
     func failedToRequest(message: String){
         print(message)
     }
 }
+
 
 
 

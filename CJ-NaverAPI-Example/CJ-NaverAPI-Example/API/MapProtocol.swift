@@ -15,4 +15,7 @@ protocol MapDataManagerDelegate{
 protocol ViewControllerDelegate: AnyObject{
     func didSuccessReturnPath(result: Trafast)
     func failedToRequest(message: String)
+    
+    func didSuccessReceivedLngLat(result: Welcome)
 }
+

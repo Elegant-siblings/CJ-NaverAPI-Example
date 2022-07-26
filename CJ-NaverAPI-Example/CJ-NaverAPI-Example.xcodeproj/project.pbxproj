@@ -25,6 +25,8 @@
 		329B19B5288C009C00C17CA2 /* LabelClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329B19B4288C009C00C17CA2 /* LabelClass.swift */; };
 		329B19B7288C00A600C17CA2 /* ButtonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329B19B6288C00A600C17CA2 /* ButtonClass.swift */; };
 		329B19B9288C04E800C17CA2 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329B19B8288C04E800C17CA2 /* Device.swift */; };
+		32A2C553288FC1740000CCB6 /* NavBarClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A2C552288FC1730000CCB6 /* NavBarClass.swift */; };
+		32A2C555288FCA540000CCB6 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A2C554288FCA540000CCB6 /* PieChartView.swift */; };
 		32A460A6288CFBBF00B79C51 /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A460A5288CFBBF00B79C51 /* CALayer.swift */; };
 		32A7EC4F288EDED300EC02D8 /* ViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A7EC4E288EDED300EC02D8 /* ViewDelegate.swift */; };
 		32A9EB9D288A7AA500F033AB /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A9EB9C288A7AA500F033AB /* UIColor.swift */; };
@@ -56,6 +58,8 @@
 		329B19B4288C009C00C17CA2 /* LabelClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelClass.swift; sourceTree = "<group>"; };
 		329B19B6288C00A600C17CA2 /* ButtonClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonClass.swift; sourceTree = "<group>"; };
 		329B19B8288C04E800C17CA2 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		32A2C552288FC1730000CCB6 /* NavBarClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarClass.swift; sourceTree = "<group>"; };
+		32A2C554288FCA540000CCB6 /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
 		32A460A5288CFBBF00B79C51 /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
 		32A7EC4E288EDED300EC02D8 /* ViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDelegate.swift; sourceTree = "<group>"; };
 		32A9EB9C288A7AA500F033AB /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -130,6 +134,7 @@
 			children = (
 				3210BA3A288E729700F6E268 /* DeliveryCompletedViewController.swift */,
 				3210BA3C288E82A800F6E268 /* DeliveryCompletedTableViewCell.swift */,
+				32A2C554288FCA540000CCB6 /* PieChartView.swift */,
 			);
 			path = DeliveryCompleted;
 			sourceTree = "<group>";
@@ -179,6 +184,7 @@
 			children = (
 				329B19B4288C009C00C17CA2 /* LabelClass.swift */,
 				329B19B6288C00A600C17CA2 /* ButtonClass.swift */,
+				32A2C552288FC1730000CCB6 /* NavBarClass.swift */,
 			);
 			path = CustomClass;
 			sourceTree = "<group>";
@@ -329,6 +335,7 @@
 				1D7210E428724ED00037D492 /* ViewController.swift in Sources */,
 				329B19B9288C04E800C17CA2 /* Device.swift in Sources */,
 				329B19B5288C009C00C17CA2 /* LabelClass.swift in Sources */,
+				32A2C555288FCA540000CCB6 /* PieChartView.swift in Sources */,
 				1D7210E028724ED00037D492 /* AppDelegate.swift in Sources */,
 				329B19AB288BC0C200C17CA2 /* IndicatorView.swift in Sources */,
 				1D7210E228724ED00037D492 /* SceneDelegate.swift in Sources */,
@@ -336,6 +343,7 @@
 				3210BA3B288E729700F6E268 /* DeliveryCompletedViewController.swift in Sources */,
 				329B19AD288BC46C00C17CA2 /* BottomSheetViewController.swift in Sources */,
 				3210BA3D288E82A800F6E268 /* DeliveryCompletedTableViewCell.swift in Sources */,
+				32A2C553288FC1740000CCB6 /* NavBarClass.swift in Sources */,
 				32C927A1287DA4A400C781FC /* Constant.swift in Sources */,
 				329B19AF288BDC7000C17CA2 /* UIFont.swift in Sources */,
 				32A7EC4F288EDED300EC02D8 /* ViewDelegate.swift in Sources */,

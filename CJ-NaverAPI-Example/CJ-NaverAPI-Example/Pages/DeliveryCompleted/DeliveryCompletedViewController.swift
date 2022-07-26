@@ -39,6 +39,7 @@ class DeliveryCompletedViewController: UIViewController {
     }
     let backButton = UIButton().then {
         $0.setImage(UIImage(systemName: "arrow.left"), for: .normal)
+        $0.tintColor = .white
         $0.addTarget(self, action: #selector(back), for: .touchUpInside)
     }
     
@@ -142,6 +143,7 @@ class DeliveryCompletedViewController: UIViewController {
         $0.layer.borderColor = UIColor.borderColor.cgColor
         $0.separatorStyle = .singleLine
         $0.allowsSelection = false
+        $0.clipsToBounds = true
         $0.separatorColor = UIColor.customLightGray
         $0.separatorInset = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 4)
         $0.layer.addShadow(location: [.top, .bottom])
@@ -154,6 +156,7 @@ class DeliveryCompletedViewController: UIViewController {
     let confirmButton = MainButton(type: .main).then {
         $0.setTitle("확인", for: .normal)
         $0.layer.borderColor = UIColor.CjYellow.cgColor
+        $0.addTarget(self, action: #selector(confirm), for: .touchUpInside)
     }
 
 
@@ -165,10 +168,13 @@ class DeliveryCompletedViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        navigationController?.navigationBar.backgroundColor = .deppBlue
-        self.navigationController?.navigationBar.isHidden = true
-        
-        self.view.backgroundColor = .white
+        navigationController?.navigationBar.isHidden = true
+//        navigationController?.navigationBar.topItem!.title = "배달 요약"
+//        navigationItem.backBarButtonItem?.title = ""
+//        navigationItem.backBarButtonItem?.tintColor = .white
+//
+//        self.navigationController?.navigationBar.isHidden = false
+        self.view.backgroundColor = .deppBlue
         
         view.addSubview(scrollView)
         scrollView.addSubview(scrollContentView)
@@ -183,12 +189,14 @@ class DeliveryCompletedViewController: UIViewController {
         
         
         setConstraints()
+        presentCircleView()
     }
     
     
     func setConstraints() {
         // ScrollView
         scrollView.snp.makeConstraints { make in
+//            make.edges.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.leading.equalTo(view.safeAreaLayoutGuide)
             make.trailing.equalTo(view.safeAreaLayoutGuide)
@@ -343,8 +351,32 @@ class DeliveryCompletedViewController: UIViewController {
         }
     }
     
+    private func presentCircleView() {
+        
+//        let width = self.infoContainerView2.frame.width
+        let width = CGFloat(172)
+        
+//        let height = self.infoContainerView2.frame.height
+        let height = CGFloat(102)
+        
+        let pieChartView = PieChartView(frame: CGRect(x: 0, y: 0, width: width, height: height))
+        pieChartView.center = self.infoContainerView2.center
+        
+        pieChartView.slices = [Slice(percent: 0.1, color: UIColor.CjRed),
+                                Slice(percent: 0.15, color: UIColor.CjYellow),
+                                Slice(percent: 0.75, color: UIColor.CjBlue)]
+        
+        self.infoContainerView2.addSubview(pieChartView)
+        pieChartView.animateChart()
+    }
+    
+    
     @objc func back(){
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func confirm() {
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     
